@@ -156,6 +156,10 @@ class OffsetsTextInfo(textInfos.TextInfo):
 		else:
 			return False
 
+	# There is no __ne__ defined for OffsetsTextInfo classes.
+	# Defining __ne__ my change the behaviour of existing code.
+	# When trying to introduce a __ne__ method, try first throwing an exception from the method and smoke testing the whole application.
+
 	def _get_locationText(self):
 		textList=[]
 		storyLength=self._getStoryLength() or 1
