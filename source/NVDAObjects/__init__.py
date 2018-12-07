@@ -1196,6 +1196,11 @@ This code is executed if a gain focus event is received by this object.
 	def _get_helpText(self):
 		"""Provides user-friendly context-sensitive help for this object.
 		Subclasses are encouraged to provide help text for users, starting by calling superclass method first.
+		The default implementation returns help message for the object's role.
 		Help text list is then returned to be used in various ways, including being shown in a browse mode window.
 		"""
-		return ["Press Escape to close this help screen."]
+		helpTexts = ["Press Escape to close this help screen."]
+		roleHelpText = controlTypes.roleHelpMessages.get(self.role, None)
+		if roleHelpText is not None:
+			helpTexts.append(roleHelpText)
+		return helpTexts
