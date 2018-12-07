@@ -802,3 +802,36 @@ def processAndLabelStates(role, states, reason, positiveStates=None, negativeSta
 			# %s will be replaced with the full identifier of the negated state (e.g. selected).
 			mergedStateLabels.append(negativeStateLabelDict.get(state, negativeStateLabels.get(state, _("not %s") % stateLabels[state])))
 	return mergedStateLabels
+
+roleHelpMessages={
+	# Translators: Help message for a control's role.
+	ROLE_CHECKBOX:_("Press space bar to check or uncheck this check box."),
+	# Translators: Help message for a control's role.
+	ROLE_RADIOBUTTON:_("Use the arrow keys to choose a radio button."),
+	# Translators: Help message for a control's role.
+	ROLE_STATICTEXT:_("Use the arrow keys to read this box."),
+	# Translators: Help message for a control's role.
+	ROLE_EDITABLETEXT:_("Type text here."),
+	# Translators: Help message for a control's role.
+	ROLE_BUTTON:_("Press SPACE or ENTER to activate this button."),
+	# Translators: Help message for a control's role.
+	ROLE_MENUITEM:_("Use the arrow keys to move between the menu items."),
+	# Translators: Help message for a control's role.
+	ROLE_POPUPMENU:_("Use up and down arrow keys to move through options in the pop-up menu."),
+	# Translators: Help message for a control's role.
+	ROLE_COMBOBOX:_("Use the arrow keys to move among choices in the combo box until the desired option is found."),
+	# Translators: Help message for a control's role.
+	ROLE_LISTITEM:_("Use the arrow keys to move to the next or previous item in this list."),
+	# Translators: Help message for a control's role.
+	ROLE_LINK:_("Press SPACE or ENTER to activate this link."),
+	# Translators: Help message for a control's role.
+	ROLE_TREEVIEWITEM:_("Use the up and down arrow keys to select the items. Use left arrow to collapse and right arrow to expand."),
+	# Translators: Help message for a control's role.
+	ROLE_TAB:_("Use the left and right arrow keys to move between tabs, or press control+tab for next tab and control+shift+tab for previous tab."),
+	# Translators: Help message for a control's role.
+	ROLE_SLIDER:_("Use the left and down arrow keys to decrease and up and right arrow keys to increase the value in this slider. Use page up and page down to increase or decrease in larger values, and press home and end keys to select maximum and minimum value."),
+	# Translators: Help message for a control's role.
+	ROLE_TABLE:_("Press control, alt and arrow keys together to move between rows and columns."),
+	# Translators: Help message for a control's role.
+	ROLE_DOCUMENT:_("Use the arrow keys or object navigation commands to move through the document."),
+}
