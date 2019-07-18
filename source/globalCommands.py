@@ -2283,6 +2283,12 @@ class GlobalCommands(ScriptableObject):
 		# #2699: for now, help will be given for focused object.
 		obj=api.getFocusObject()
 		helpText = obj.helpText
+		# See if the app module has any useful help messages.
+		if hasattr(obj.appModule, "helpText"):
+			helpText.append(obj.appModule.helpText)
+		# Don't forget browse mode.
+		if obj.treeInterceptor and hasattr(obj.treeInterceptor, "helpText"):
+			helpText.append(obj.treeInterceptor.helpText)
 		if len(helpText) == 1:
 			# Translators: message displayed when there is no help information for the control.
 			helpText.append(_("No help information is available."))
