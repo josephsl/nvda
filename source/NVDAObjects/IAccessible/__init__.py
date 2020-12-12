@@ -85,10 +85,11 @@ def normalizeIA2TextFormatField(formatField):
 	except KeyError:
 		invalid=None
 	if invalid:
-		invalid=invalid.lower()
-		if invalid=="spelling":
+		# aria-invalid can contain multiple values separated by a comma.
+		invalidList = [x.lower().strip() for x in invalid.split(',')]
+		if "spelling" in invalidList:
 			formatField["invalid-spelling"]=True
-		elif invalid=="grammar":
+		if "grammar" in invalidList:
 			formatField["invalid-grammar"]=True
 	color=formatField.get('color')
 	if color:
@@ -603,12 +604,6 @@ the NVDAObject for IAccessible
 		# Try every trick in the book to get the window handle if we don't have it.
 		if not windowHandle and isinstance(IAccessibleObject,IAccessibleHandler.IAccessible2):
 			windowHandle=self.IA2WindowHandle
-			#Mozilla Gecko: we can never use a MozillaWindowClass window for Gecko 1.9
-			tempWindow=windowHandle
-			while tempWindow and winUser.getClassName(tempWindow)=="MozillaWindowClass":
-				tempWindow=winUser.getAncestor(tempWindow,winUser.GA_PARENT)
-			if tempWindow and winUser.getClassName(tempWindow).startswith('Mozilla'):
-				windowHandle=tempWindow
 		try:
 			Identity=IAccessibleHandler.getIAccIdentity(IAccessibleObject,IAccessibleChildID)
 		except COMError:
@@ -698,6 +693,13 @@ the NVDAObject for IAccessible
 			testObj = parent
 		else:
 			return False
+		return True
+
+	def _get_shouldAllowIAccessibleMenuStartEvent(self) -> bool:
+		"""Determine whether an IAccessible menu start or menu popup start event should be allowed
+		for this object.
+		@return: C{True} if the event should be allowed.
+		"""
 		return True
 
 	def _get_TextInfo(self):

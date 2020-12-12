@@ -42,14 +42,17 @@ negative number	minus	none	norep
 # Standard punctuation/symbols
 !	uskličnik	all
 "	navodnici	most
-\#	broj	some
+\#	znak za broj	some
 $	dolar	some
 £	funta	some
 €	euro	some
 ¢	cent	all	norep
 ¥	jen	all	norep
 ₹	rupija	some	norep
+ƒ	florin	all	norep
+¤	opći znak valuta	all	norep
 %	posto	some
+‰	promil	some
 &	trgovačko i	some
 '	izostavnik	all
 (	otvorena zagrada	most	always
@@ -73,52 +76,100 @@ $	dolar	some
 \\	obrnuta kosa crta	most
 ^	krović	most
 _	podvlaka	most
-`	akcent	most
+`	gravis	most
 {	otvorena vitičasta zagrada	most
 }	zatvorena vitičasta zagrada	most
 |	okomita crta	most
+¦	rastavljena okomita crta	most
 ~	tilda	most
+¡	preokrenuti uskličnik	some
+¿	preokrenuti upitnik	some
+·	dignuta točka	most
+‚	otvoreni polunavodnik	most
+„	otvoreni navodnici	most
+′	oznaka minute	some
+″	oznaka sekunde	some
+‴	trostruki prime	some
 
 # Other characters
 •	predznak	some
 …	trotočka	all	always
 ...	trotočka	all	always
 “	otvoreni navodnici gore	most
-„	otvoreni navodnici	most
 ”	zatvoreni navodnici	most
 ‘	otvoreni polunavodnik gore	most
-‚	otvoreni polunavodnik	most
 ’	zatvoreni polunavodnik	most
 –	povlaka	most	always
 —	duga povlaka	most
+­	uvjetna crtica	most
+⁃	crtica predznak	none
 ●	kružić	most
+○	bijeli kružić	most
 ¨	prijeglas	most
+¯	makron	most
+´	akut	most
+¸	cedilla	most
 ‎	oznaka za lijevo na desno	char
+¶	znak za odlomak	most
 ‏	oznaka za desno na lijevo	char
 ■	kvadratić	some
 ▪	kvadratić	some
 ◾	kvadratić	some
+□	bijeli kvadratić	some
 ◦	kružić	some
 ⇒	dupla strelica desno	some
 ⇨	bijela strelica desno	some
-➢	vrh desne strelice desno	some
+➔	desno ukazujuća strelica	some
+➢	vrh strelice desno	some
 ❖	četverodijelni romb	some
 ♣	tref	some
 ♦	karo	some
 ♥	herc	some
 ♠	pik	some
+◆	romb	some
 §	članak	all
 °	stupnjeva	some
-«	zatvoreni španjolski navodnici
-»	otvoreni španjolski navodnici
+«	zatvoreni francuski navodnici
+»	otvoreni francuski navodnici
 µ	mikro	some
-¹	na prvu	some
-²	na drugu	some
-³	na treću	some
+º	oznaka rednog broja muški rod	some
+ª	oznaka rednog broja ženski rod	some
+⁰	eksponent 0	some
+¹	eksponent 1	some
+²	eksponent 2	some
+³	eksponent 3	some
+⁴	eksponent 4	some
+⁵	eksponent 5	some
+⁶	eksponent 6	some
+⁷	eksponent 7	some
+⁸	eksponent 8	some
+⁹	eksponent 9	some
+⁺	eksponent plus	some
+⁻	eksponent minus	some
+⁼	eksponent jednako	some
+⁽	eksponent otvorena zagrada	some
+⁾	eksponent zatvorena zagrada	some
+ⁿ	eksponent n	some
+₀	indeks 0	some
+₁	indeks 1	some
+₂	indeks 2	some
+₃	indeks 3	some
+₄	indeks 4	some
+₅	indeks 5	some
+₆	indeks 6	some
+₇	indeks 7	some
+₈	indeks 8	some
+₉	indeks 9	some
+₊	indeks plus	some
+₋	indeks minus	some
+₌	indeks jednako	some
+₍	indeks otvorena zagrada	some
+₎	indeks zatvorena zagrada	some
 ®	registrirano	some
 ™	trgovački znak	some
 ©	autorska prava	some
-±	plus ili minus	most
+℠	ServiceMark	some
+±	plus-minus	most
 ×	puta	most
 ÷	podijeljeno	most
 ←	strelica lijevo	some
@@ -128,6 +179,10 @@ _	podvlaka	most
 ✓	kvačica	some
 ✔	kvačica	some
 🡺	strelica desno    some
+†	križ	some
+‡	dvostruki križ	some
+‣	trokutasti predznak	none
+✗	predznak u obliku slova x	none
 
 #Mathematical Operators U+2200 to U+220F
 ∀	za svaki	none
@@ -156,17 +211,18 @@ _	podvlaka	most
 ∞	beskonačnost	none
 ∟	pravi kut	none
 ∠	kut	none
-∥	paralelno sa	none
+∥	je paralelno sa	none
 ∦	nije paralelno sa	none
 ∧	logičko i	none
 ∨	logičko ili	none
+¬	logičko ne	none
 ∩	presjek	none
 ∪	unija	none
 ∫	integral	none
 ∴	stoga, dakle	none
 ∵	zato što	none
 ∶	omjer	none
-∷	je proporcionalno sa	none
+∷	proporcija	none
 ≤	manje ili jednako	none
 ≥	veće ili jednako	none
 ⊂	pravi podskup	none
@@ -175,6 +231,9 @@ _	podvlaka	most
 ⊇	nadskup	none
 
 # Vulgar Fractions U+2150 to U+215E
+¼	jedna četvrtina	none
+½	jedna polovina	none
+¾	tri četvrtine	none
 ⅐	jedna sedmina	none
 ⅑	jedna devetina	none
 ⅒	jedna desetina	none
