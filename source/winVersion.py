@@ -198,8 +198,8 @@ def getWinVer():
 
 
 def isSupportedOS():
-	# NVDA can only run on Windows 8.1 (Blue) and above
-	return getWinVer() >= WIN81
+	# NVDA can only run on Windows 10 and above
+	return getWinVer() >= WIN10
 
 
 UWP_OCR_DATA_PATH = os.path.expandvars(r"$windir\OCR")
@@ -236,4 +236,7 @@ def __getattr__(attrName: str) -> Any:
 	if attrName == "WIN8" and NVDAState._allowDeprecatedAPI():
 		log.warning("WIN8 is deprecated.")
 		return WinVersion(major=6, minor=2, build=9200, releaseName="Windows 8")
+	if attrName == "WIN81" and NVDAState._allowDeprecatedAPI():
+		log.warning("WIN81 is deprecated.")
+		return WinVersion(major=6, minor=3, build=9600, releaseName="Windows 8.1")
 	raise AttributeError(f"module {repr(__name__)} has no attribute {repr(attrName)}")
