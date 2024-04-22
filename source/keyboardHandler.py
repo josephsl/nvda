@@ -17,7 +17,6 @@ from typing import (
 	Any,
 )
 
-import winVersion
 import winUser
 import vkCodes
 import eventHandler
@@ -145,8 +144,6 @@ def shouldUseToUnicodeEx(focus: Optional["NVDAObject"] = None):
 	return (
 		# The focused NVDA object should be a real window
 		isinstance(focus, Window)
-		# This is only possible in Windows 10 1607 and above
-		and winVersion.getWinVer() >= winVersion.WIN10_1607
 		and (  # Either of
 			# We couldn't inject in-process, and its not a legacy console window without keyboard support.
 			# console windows have their own specific typed character support.
