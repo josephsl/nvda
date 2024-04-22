@@ -3690,7 +3690,6 @@ class AdvancedPanelControls(
 		self.keyboardSupportInLegacyCheckBox.defaultValue = self._getDefaultValue(
 			["terminals", "keyboardSupportInLegacy"],
 		)
-		self.keyboardSupportInLegacyCheckBox.Enable(winVersion.getWinVer() >= winVersion.WIN10_1607)
 
 		# Translators: This is the label for a combo box for selecting a
 		# method of detecting changed content in terminals in the advanced
