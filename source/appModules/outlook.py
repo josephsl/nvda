@@ -9,7 +9,6 @@ from comtypes.hresult import S_OK
 import comtypes.client
 import comtypes.automation
 import ctypes
-import winVersion
 from hwPortUtils import SYSTEMTIME
 import scriptHandler
 from scriptHandler import script
@@ -105,7 +104,6 @@ class AppModule(appModuleHandler.AppModule):
 		if (
 			versionMajor >= 16
 			and windowClass == "RICHEDIT60W"
-			and winVersion.getWinVer() >= winVersion.WIN10
 		):
 			# #12726: RICHEDIT60W In Outlook 2016+ on Windows 10+
 			# has a very good UI Automation implementation,
