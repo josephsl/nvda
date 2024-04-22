@@ -11,7 +11,6 @@ import api
 import UIAHandler
 from NVDAObjects.UIA import UIA
 import winUser
-import winVersion
 import controlTypes
 import appModuleHandler
 from NVDAObjects.window import DisplayModelEditableText
@@ -65,7 +64,6 @@ class AppModule(appModuleHandler.AppModule):
 		if (
 			versionMajor >= 16
 			and windowClass == "RICHEDIT60W"
-			and winVersion.getWinVer() >= winVersion.WIN10
 		):
 			# RICHEDIT60W In Excel 2016+ on Windows 10+
 			# has a very good UI Automation implementation,
