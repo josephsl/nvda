@@ -2632,10 +2632,7 @@ class Toast_win8(Notification, UIA):
 
 class Toast_win10(Notification, UIA):
 	# #6096: Windows 10 build 14366 and later does not fire tooltip event when toasts appear.
-	if winVersion.getWinVer() > winVersion.WIN10_1511:
-		event_UIA_window_windowOpen = Notification.event_alert
-	else:
-		event_UIA_toolTipOpened = Notification.event_alert
+	event_UIA_window_windowOpen = Notification.event_alert
 	# #7128: in Creators Update (build 15063 and later), due to possible UIA Core problem, toasts are announced repeatedly if UWP apps were used for a while.
 	# Therefore, have a private toast message consultant (toast timestamp and UIA element runtime ID) handy.
 	_lastToastTimestamp = None
