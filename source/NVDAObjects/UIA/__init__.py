@@ -65,7 +65,6 @@ from NVDAObjects.behaviors import (
 import braille
 import locationHelper
 import ui
-import winVersion
 import NVDAObjects
 
 
@@ -2639,13 +2638,12 @@ class Toast_win10(Notification, UIA):
 	_lastToastRuntimeID = None
 
 	def event_UIA_window_windowOpen(self):
-		if winVersion.getWinVer() >= winVersion.WIN10_1703:
-			toastTimestamp = time.time()
-			toastRuntimeID = self.UIAElement.getRuntimeID()
-			if toastRuntimeID == self._lastToastRuntimeID and toastTimestamp - self._lastToastTimestamp < 1.0:
-				return
-			self.__class__._lastToastTimestamp = toastTimestamp
-			self.__class__._lastToastRuntimeID = toastRuntimeID
+		toastTimestamp = time.time()
+		toastRuntimeID = self.UIAElement.getRuntimeID()
+		if toastRuntimeID == self._lastToastRuntimeID and toastTimestamp - self._lastToastTimestamp < 1.0:
+			return
+		self.__class__._lastToastTimestamp = toastTimestamp
+		self.__class__._lastToastRuntimeID = toastRuntimeID
 		Notification.event_alert(self)
 
 
