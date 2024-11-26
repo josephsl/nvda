@@ -234,12 +234,6 @@ class AppModule(appModuleHandler.AppModule):
 			ui.message(_("No emoji"))
 		nextHandler()
 
-	# Emoji panel for build 16299 and 17134.
-	_classicEmojiPanelAutomationIds = (
-		"TEMPLATE_PART_ExpressiveInputFullViewFuntionBarItemControl",
-		"TEMPLATE_PART_ExpressiveInputFullViewFuntionBarCloseButton",
-	)
-
 	def event_UIA_window_windowOpen(self, obj, nextHandler):
 		firstChild = obj.firstChild
 		# Handle Ime Candidate UI being shown
@@ -257,18 +251,9 @@ class AppModule(appModuleHandler.AppModule):
 			return
 		# #9104: different aspects of modern input panel are represented by Automation Id's.
 		childAutomationId = firstChild.UIAAutomationId
-		# Emoji panel for 1709 (build 16299) and 1803 (17134).
-		emojiPanelInitial = winVersion.WIN10_1709
-		# This event is properly raised in build 17134.
-		emojiPanelWindowOpenEvent = winVersion.WIN10_1803
-		if (
-			childAutomationId in self._classicEmojiPanelAutomationIds
-			and emojiPanelInitial <= winVersion.getWinVer() <= emojiPanelWindowOpenEvent
-		):
-			eventHandler.queueEvent("UIA_elementSelected", obj.lastChild.firstChild)
 		# Handle hardware keyboard suggestions.
 		# Treat it the same as CJK composition list - don't announce this if candidate announcement setting is off.
-		elif (
+		if (
 			childAutomationId == "CandidateWindowControl"
 			and config.conf["inputComposition"]["autoReportAllCandidates"]
 		):
@@ -337,24 +322,23 @@ class AppModule(appModuleHandler.AppModule):
 		):
 			return
 		# The word "blank" is kept announced, so suppress this on build 17666 and later.
-		if winVersion.getWinVer() > winVersion.WIN10_1803:
-			# In build 17672 and later,
-			# return immediately when element selected event on clipboard item was fired just prior to this.
-			# In some cases, parent will be None, as seen when emoji panel is closed in build 18267.
-			try:
-				if (
-					obj.UIAAutomationId == "TEMPLATE_PART_ClipboardItemIndex"
-					or obj.parent.UIAAutomationId == "TEMPLATE_PART_ClipboardItemsList"
-				):
-					return
-			except AttributeError:
-				return
+		# In build 17672 and later,
+		# return immediately when element selected event on clipboard item was fired just prior to this.
+		# In some cases, parent will be None, as seen when emoji panel is closed in build 18267.
+		try:
 			if (
-				not self._emojiPanelJustOpened
-				or obj.UIAAutomationId != "TEMPLATE_PART_ExpressionGroupedFullView"
+				obj.UIAAutomationId == "TEMPLATE_PART_ClipboardItemIndex"
+				or obj.parent.UIAAutomationId == "TEMPLATE_PART_ClipboardItemsList"
 			):
-				speech.cancelSpeech()
-			self._emojiPanelJustOpened = False
+				return
+		except AttributeError:
+			return
+		if (
+			not self._emojiPanelJustOpened
+			or obj.UIAAutomationId != "TEMPLATE_PART_ExpressionGroupedFullView"
+		):
+			speech.cancelSpeech()
+		self._emojiPanelJustOpened = False
 		# Don't forget to add "Microsoft Candidate UI" as something that should be suppressed.
 		if obj.UIAAutomationId not in (
 			"TEMPLATE_PART_ExpressionFullViewItemsGrid",
