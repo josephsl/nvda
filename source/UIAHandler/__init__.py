@@ -471,8 +471,8 @@ class UIAHandler(COMObject):
 			oledll.ole32.CoInitializeEx(None, comtypes.COINIT_MULTITHREADED)
 			self.clientObject = CoCreateInstance(
 				UIA.CUIAutomation8._reg_clsid_,
-				# Minimum interface is IUIAutomation3 (Windows 8.1).
-				interface=UIA.CUIAutomation8._com_interfaces_[1],
+				# Minimum interface is IUIAutomation4 (Windows 10 Version 1607).
+				interface=UIA.CUIAutomation8._com_interfaces_[2],
 				clsctx=CLSCTX_INPROC_SERVER,
 			)
 			# #7345: Instruct UIA to never map MSAA winEvents to UIA propertyChange events.
