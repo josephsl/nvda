@@ -10,7 +10,6 @@ as well as Windows 11, represented by alias app modules.
 
 import appModuleHandler
 import controlTypes
-import winVersion
 import winUser
 from logHandler import log
 from NVDAObjects import NVDAObject
@@ -59,8 +58,7 @@ class AppModule(appModuleHandler.AppModule):
 			# Although it is geared for Narrator, it is applicable to other screen readers as well.
 			# The live region itself is a child of the one shown here.
 			if (
-				winVersion.getWinVer() >= winVersion.WIN10_1909
-				and obj.UIAAutomationId == "suggestionCountForNarrator"
+				obj.UIAAutomationId == "suggestionCountForNarrator"
 				and obj.firstChild is not None
 			):
 				obj.name = obj.firstChild.name
