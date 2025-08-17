@@ -22,7 +22,6 @@ import winUser
 import extensionPoints
 import oleacc
 from utils.security import objectBelowLockScreenAndWindowsIsLocked
-import winVersion
 from comInterfaces import IAccessible2Lib as IA2
 
 if typing.TYPE_CHECKING:
@@ -42,7 +41,6 @@ lastQueuedFocusObject = None
 
 # Handle virtual desktop switch announcements in Windows 10 and later
 _virtualDesktopName: Optional[str] = None
-_canAnnounceVirtualDesktopNames: bool = winVersion.getWinVer() >= winVersion.WIN10_1903
 
 
 def queueEvent(eventName, obj, **kwargs):
@@ -339,7 +337,6 @@ def executeEvent(
 			eventName == "nameChange"
 			and isinstance(obj, Window)
 			and obj.windowClassName == "#32769"
-			and _canAnnounceVirtualDesktopNames
 		):
 			import core
 
@@ -361,9 +358,6 @@ def handlePossibleDesktopNameChange() -> None:
 	On Windows versions lower than Windows 10, this function does nothing.
 	"""
 	global _virtualDesktopName
-	# Virtual desktop switch announcement works more effectively in Version 1903 and later.
-	if not _canAnnounceVirtualDesktopNames:
-		return
 	if _virtualDesktopName:
 		import ui
 
