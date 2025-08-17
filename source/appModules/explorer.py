@@ -500,7 +500,7 @@ class AppModule(appModuleHandler.AppModule):
 	def isGoodUIAWindow(self, hwnd: HWNDValT) -> bool:
 		currentWinVer = winVersion.getWinVer()
 		# #9204: shell raises window open event for emoji panel in build 18305 and later.
-		if currentWinVer >= winVersion.WIN10_1903 and winUser.getClassName(hwnd) == "ApplicationFrameWindow":
+		if winUser.getClassName(hwnd) == "ApplicationFrameWindow":
 			return True
 		# #13506: Windows 11 UI elements such as Taskbar should be reclassified as UIA windows,
 		# letting NVDA announce shell elements when navigating with mouse and/or touch,
@@ -532,13 +532,7 @@ class AppModule(appModuleHandler.AppModule):
 		# Send UIA window open event to input app window.
 		if isinstance(obj, UIA) and obj.UIAElement.cachedClassName == "ApplicationFrameWindow":
 			inputPanelWindow = obj.firstChild
-			inputPanelAppName = (
-				# 19H2 and earlier
-				"windowsinternal_composableshell_experiences_textinput_inputapp",
-				# 20H1 and later
-				"textinputhost",
-			)
-			if inputPanelWindow and inputPanelWindow.appModule.appName in inputPanelAppName:
+			if inputPanelWindow and inputPanelWindow.appModule.appName == "textinputhost":
 				eventHandler.executeEvent("UIA_window_windowOpen", inputPanelWindow)
 				return
 		nextHandler()
